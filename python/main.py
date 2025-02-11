@@ -1,8 +1,9 @@
 from system.system import system_menu
 from devops_tools.devops_tools import devops_tools_menu
-from github.github import github_menu
+from github.github_menu import github_menu
 from aws.aws import aws_menu
 from k8s.k8s import k8s_menu
+from docker.docker import docker_menu
 
 def print_welcome_message():
     print("****************************************")
@@ -23,7 +24,8 @@ def main_menu():
         print("3. GitHub")
         print("4. AWS")
         print("5. K8s")
-        print("6. Exit")
+        print("6. Docker")
+        print("7. Exit")
         choice = input("Select an option: ")
         if choice == '1':
             system_menu()
@@ -36,6 +38,8 @@ def main_menu():
         elif choice == '5':
             k8s_menu()
         elif choice == '6':
+            docker_menu()
+        elif choice == '7':
             break
         else:
             print("Invalid selection. Please try again.")
