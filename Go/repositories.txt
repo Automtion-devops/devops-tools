@@ -1,0 +1,2 @@
+https://github.com/JaimeHenaoChallange/KubeOps.git
+https://github.com/JaimeHenaoChallange/terra_jedi.git
