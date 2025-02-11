@@ -48,6 +48,12 @@ def uninstall_tools():
         print(f"The directory {scripts_dir} does not exist.")
         return
 
+    # Mapeo de nombres de scripts a nombres de paquetes reales
+    tool_mapping = {
+        'docker_kali_arm': 'docker',
+        # Agrega más mapeos aquí según sea necesario
+    }
+
     while True:
         tools = [f for f in os.listdir(scripts_dir) if os.path.isfile(os.path.join(scripts_dir, f))]
         if not tools:
@@ -66,7 +72,9 @@ def uninstall_tools():
         try:
             choice = int(choice)
             if 1 <= choice <= len(tools):
-                tool_to_uninstall = tools[choice - 1].replace('install_', '').replace('.py', '')
+                script_name = tools[choice - 1]
+                tool_alias = script_name.replace('install_', '').replace('.py', '')
+                tool_to_uninstall = tool_mapping.get(tool_alias, tool_alias)
                 print(f"Uninstalling {tool_to_uninstall}...")
                 try:
                     subprocess.run(['sudo', 'apt-get', 'remove', '-y', tool_to_uninstall], check=True)
