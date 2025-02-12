@@ -5,6 +5,7 @@ import time
 
 def show_system_info():
     print("\nSystem Information:")
+    print()
     print(f"System Name: {platform.system()}")
     print(f"Host Name: {platform.node()}")
     print(f"Operating System: {platform.system()} {platform.release()}")
@@ -18,6 +19,7 @@ def show_system_info():
 
 def show_disk_usage():
     print("\nDisk Usage:")
+    print()
     for partition in psutil.disk_partitions():
         usage = psutil.disk_usage(partition.mountpoint)
         print(f"Partition {partition.device}:")
@@ -35,12 +37,14 @@ def show_running_processes():
     print(f"Running Processes: {len(psutil.pids())}")
 
 def show_cpu_usage():
-    print("\nCPU Usage")
+    print("\nCPU:")
+    print()
     print(f"CPU Usage Percentage: {psutil.cpu_percent(interval=1)}%")
     print(f"CPU Usage Per Core: {psutil.cpu_percent(interval=1, percpu=True)}%")
 
 def show_memory_usage():
     print("\nMemory Usage:")
+    print()
     memory = psutil.virtual_memory()
     print(f"Total Memory: {memory.total / (1024 ** 3):.2f} GB")
     print(f"Available Memory: {memory.available / (1024 ** 3):.2f} GB")
@@ -49,6 +53,7 @@ def show_memory_usage():
 
 def update_upgrade_system():
     print("Updating the system...")
+    print()
     subprocess.run(['sudo', 'apt', 'update'])
     subprocess.run(['sudo', 'apt', 'full-upgrade', '-y'])
     print(f"Available Updates: {subprocess.run(['apt', 'list', '--upgradable'], capture_output=True, text=True).stdout.count('upgradable')}")
@@ -87,6 +92,7 @@ def install_app():
 def system_menu():
     while True:
         print("\nSystem Menu")
+        print()
         print("1. Show system information")
         print("2. Show disk usage")
         print("3. Show running processes")
@@ -96,6 +102,7 @@ def system_menu():
         print("7. Show htop")
         print("8. Install application")
         print("9. Back")
+        print()
         choice = input("Select an option: ")
         if choice == '1':
             show_system_info()

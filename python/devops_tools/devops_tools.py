@@ -15,11 +15,13 @@ def install_tools():
             return
 
         print("Select a tool to install:")
+        print()
         for idx, tool in enumerate(tools, start=1):
             alias = tool.replace('install_', '').replace('_kali_arm', '').replace('.py', '')
             print(f"{idx}. {alias}")
         print(f"{len(tools) + 1}. Install Jenkins in Docker")
         print("0. Back")
+        print()
 
         choice = input("Enter the number of the tool you want to install or '0' to go back: ")
         if choice == '0':
@@ -55,10 +57,12 @@ def uninstall_tools():
             return
 
         print("Select a tool to uninstall:")
+        print()
         for idx, tool in enumerate(tools, start=1):
             alias = tool.replace('uninstall_', '').replace('_kali_arm', '').replace('.py', '')
             print(f"{idx}. {alias}")
         print("0. Back")
+        print()
 
         choice = input("Enter the number of the tool you want to uninstall or '0' to go back: ")
         if choice == '0':
@@ -145,10 +149,12 @@ def update_tools():
             return
 
         print("Select a tool to update:")
+        print()
         for idx, tool in enumerate(tools, start=1):
             alias = tool.replace('install_', '').replace('_kali_arm', '').replace('.py', '')
             print(f"{idx}. {alias}")
         print("0. Back")
+        print()
 
         choice = input("Enter the number of the tool you want to update or '0' to go back: ")
         if choice == '0':
@@ -172,11 +178,14 @@ def update_tools():
 def devops_tools_menu():
     while True:
         print("\nDevops-tools Menu")
+        print()
         print("1. Install tools")
         print("2. Update tools")
         print("3. Uninstall tools")
         print("4. Back")
+        print()
         choice = input("Select an option: ")
+        print()
         if choice == '1':
             install_tools()
         elif choice == '2':
