@@ -16,9 +16,11 @@ def print_welcome_message():
     print("****************************************")
 
 def main_menu():
+    print()
     print_welcome_message()
     while True:
         print("\nMain Menu")
+        print()
         print("1. System")
         print("2. Devops-tools")
         print("3. GitHub")
@@ -26,6 +28,7 @@ def main_menu():
         print("5. K8s")
         print("6. Docker")
         print("7. Exit")
+        print()
         choice = input("Select an option: ")
         if choice == '1':
             system_menu()

@@ -3,7 +3,7 @@ import subprocess
 import getpass
 
 def install_tools():
-    scripts_dir = "/home/jaime/Escritorio/devops-scripts/devops-tools/python/Scripts"
+    scripts_dir = "/home/jaime/Escritorio/devops-scripts/devops-tools/python/Scripts-install"
     if not os.path.exists(scripts_dir):
         print(f"The directory {scripts_dir} does not exist.")
         return
@@ -43,16 +43,10 @@ def install_tools():
             print("Invalid input. Please enter a number.")
 
 def uninstall_tools():
-    scripts_dir = "/home/jaime/Escritorio/devops-scripts/devops-tools/python/Scripts"
+    scripts_dir = "/home/jaime/Escritorio/devops-scripts/devops-tools/python/Scripts-uninstall"
     if not os.path.exists(scripts_dir):
         print(f"The directory {scripts_dir} does not exist.")
         return
-
-    # Mapeo de nombres de scripts a nombres de paquetes reales
-    tool_mapping = {
-        'docker_kali_arm': 'docker',
-        # Agrega más mapeos aquí según sea necesario
-    }
 
     while True:
         tools = [f for f in os.listdir(scripts_dir) if os.path.isfile(os.path.join(scripts_dir, f))]
@@ -62,7 +56,7 @@ def uninstall_tools():
 
         print("Select a tool to uninstall:")
         for idx, tool in enumerate(tools, start=1):
-            alias = tool.replace('install_', '').replace('_kali_arm', '').replace('.py', '')
+            alias = tool.replace('uninstall_', '').replace('_kali_arm', '').replace('.py', '')
             print(f"{idx}. {alias}")
         print("0. Back")
 
@@ -72,13 +66,12 @@ def uninstall_tools():
         try:
             choice = int(choice)
             if 1 <= choice <= len(tools):
-                script_name = tools[choice - 1]
-                tool_alias = script_name.replace('install_', '').replace('.py', '')
-                tool_to_uninstall = tool_mapping.get(tool_alias, tool_alias)
+                tool_to_uninstall = tools[choice - 1]
                 print(f"Uninstalling {tool_to_uninstall}...")
                 try:
-                    subprocess.run(['sudo', 'apt-get', 'remove', '-y', tool_to_uninstall], check=True)
+                    result = subprocess.run(['python3', os.path.join(scripts_dir, tool_to_uninstall)], check=True, capture_output=True, text=True)
                     print(f"{tool_to_uninstall} uninstalled successfully.")
+                    print(result.stdout)
                 except subprocess.CalledProcessError:
                     print(f"Error trying to uninstall {tool_to_uninstall}.")
             else:
@@ -140,7 +133,7 @@ def install_jenkins_docker():
         print("Error trying to install Jenkins in Docker.")
 
 def update_tools():
-    scripts_dir = "/home/jaime/Escritorio/devops-scripts/devops-tools/python/Scripts"
+    scripts_dir = "/home/jaime/Escritorio/devops-scripts/devops-tools/python/Scripts-install"
     if not os.path.exists(scripts_dir):
         print(f"The directory {scripts_dir} does not exist.")
         return

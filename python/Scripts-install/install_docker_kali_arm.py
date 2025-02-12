@@ -16,8 +16,13 @@ def main():
     run_command("sudo systemctl start docker")
     run_command("sudo systemctl enable docker")
 
+    # Agregar el usuario actual al grupo docker
+    run_command("sudo usermod -aG docker $USER")
+
     # Verificar la instalación de Docker
-    run_command("sudo docker --version")
+    run_command("docker --version")
+
+    print("Docker installed successfully. Please log out and log back in to apply the group changes.")
 
 if __name__ == "__main__":
     main()
